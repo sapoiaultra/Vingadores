@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+@font-face{
+  font-family: 'ssf4';
+  src:url('../fontes/SSF4 ABUKET.ttf');
+}
+
+@font-face{
+  font-family: 'command';
+  src:url('../fontes/pilotcommand1_2grad2ital.ttf');
+}

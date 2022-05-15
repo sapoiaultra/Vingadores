@@ -1,32 +1,39 @@
 const personagens = document.querySelectorAll('.personagem');
 
   personagens.forEach((personagem) => {
-    personagem.addEventListener("mouseenter", () => {
-      //busca o id do personagem que o mouse foi passado em cima
+    personagem.addEventListener('mouseenter', () => {
+
       const idSelecionado = personagem.attributes.id.value;
-  
-      //se passado o mouse por cima do ultron não faz nada por que ele já foi selecionado pelo player 2
-      if (idSelecionado === "ultron") return;
-  
-      //busca o nome do personagem que já está selecionado
-      const nomeSelecionado = personagem.getAttribute("data-name");
-  
-      //busca a imagem grande atual do jogador 1 
-      const imagemJogador1 = document.getElementById("personagem-jogador-1");
-      //define a nova imagem pelo id que foi passado o mouse em cima
+
+      if(idSelecionado === 'ultron') return;/*não permite a seleção do Ultron*/
+      
+      /*
+      OBJETIVO 1 - quando passar o mouse em cima do personagem temos que:
+
+        - colocar a classe selecionado no personagem que passamos o mouse em cima
+          para adicionar a animação nele
+        - retirar a classe selecionado do personagem que esta selecionado
+    */
+      
+      const personagemSelecionado = document.querySelector('.selecionado')
+      personagemSelecionado.classList.remove('.selecionado')
+      
+      personagem.classList.add('.selecionado')
+
+      /*
+      OBJETIVO 2 - quando passar o mouse em cima do personagem da listagem, trocar a
+      imagem e nome do personagem grande
+
+        - alterar a imagem do jogador 1
+        - alterar o nome do jogador 1
+      */
+      
+      const imagemJogador1 = document.getElementById('personagem-jogador-1');
       imagemJogador1.src = `./imagens/${idSelecionado}.png`;
-  
-      //busca a div pai do jogador 1
-      const personagemJogador1 = document.querySelector(".personagem-grande.personagem-jogador-1");
-      //pra depois buscar o texto do h2 e trocar pelo nome do que está com o mouse em cima
-      personagemJogador1.getElementsByTagName("h2")[0].innerHTML = nomeSelecionado;
-  
-      //busca o personagem que já está selecionado
-      const personagemSelecionado = document.querySelector(".selecionado");
-      //retira a classe do que já está selecionado
-      personagemSelecionado.classList.remove("selecionado");
-  
-      //para colocar no que está com o mouse em cima
-      personagem.classList.add("selecionado");
+
+      const nomeJogador1 = document.getElementById('nome-jogador-1');
+      const nomeSelecionado = personagem.getAttribute('data-name');
+      
+      nomeJogador1.innerHTML = nomeSelecionado;
     })
-});
+  })
